@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import './App.css';
+import { ImageCompressor } from './Components/ImageCompressor';
 function App() {
-    const apiKey = import.meta.API_KEY;
+    // const apiKey = import.meta.API_KEY;
 
     return (
-        <>
-            <h1>Image Compressor</h1>
-        </>
+        <div className="min-h-screen bg-slate-700 p-4">
+            <ImageCompressor />
+        </div>
     );
 }
 
