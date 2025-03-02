@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const ImageCompressor = () => {
     const [image, setImage] = useState('');
@@ -41,17 +42,22 @@ const ImageCompressor = () => {
     return (
         <div className="p-4">
             <div className="flex justify-center items-center flex-col text-center mx-auto">
-                <h1 className="text-white text-2xl font-bold mb-10">
+                <h1 className="text-white text-3xl font-bold mb-20">
                     Image Compressor
                 </h1>
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    className="mb-4"
-                />
+
+                <label className="flex  items-center justify-center cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md p-2 transition-colors">
+                    <CloudUploadIcon className="mr-1" />
+                    <span className="text-lg font-semibold">Upload Image</span>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        className="hidden"
+                    />
+                </label>
             </div>
-            <div className="flex mx-auto mt-20 max-w-4xl border-red-500 border-4 p-10 justify-between">
+            <div className="flex mx-auto mt-10 max-w-4xl border-slate-500 border-4 p-10 justify-between h-auto">
                 {/* Left Side: Original Image */}
                 <div className="">
                     {image && (
