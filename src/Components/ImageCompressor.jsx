@@ -40,48 +40,67 @@ const ImageCompressor = () => {
     };
     return (
         <div className="p-4">
-            <h1 className="text-white text-2xl font-bold mb-4">
-                Image Compressor
-            </h1>
-            <input
-                type="file"
-                accept="image"
-                onChange={handleImageUpload}
-                className="mb-4"
-            />
-            {image && (
-                <div className="mb-4">
-                    <h2 className="text-xl font-semibold">Original Image</h2>
-                    <img
-                        src={image}
-                        alt="Original"
-                        className="max-w-full h-auto"
-                    />
+            <div className="flex justify-center items-center flex-col text-center mx-auto">
+                <h1 className="text-white text-2xl font-bold mb-10">
+                    Image Compressor
+                </h1>
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="mb-4"
+                />
+            </div>
+            <div className="flex mx-auto mt-20 max-w-4xl border-red-500 border-4 p-10 justify-between">
+                {/* Left Side: Original Image */}
+                <div className="">
+                    {image && (
+                        <div className="mb-4 text-center">
+                            <h2 className="text-xl font-semibold text-white mb-4 ">
+                                Original Image
+                            </h2>
+                            <div className="w-64 h-64 overflow-hidden rounded-lg shadow-md">
+                                {' '}
+                                {/* Fixed size container */}
+                                <img
+                                    src={image}
+                                    alt="Original"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <button
+                                onClick={handleCompressImage}
+                                className="mt-4 text-white bg-blue-700 px-4 py-2 rounded-md hover:bg-blue-800 transition-colors mx-auto "
+                            >
+                                Compress Image
+                            </button>
+                        </div>
+                    )}
                 </div>
-            )}
-            <button
-                onClick={handleCompressImage}
-                className="text-white bg-blue-700 p-2 rounded-md"
-            >
-                Compress Image
-            </button>
-            {compressedImage && (
-                <div className="mt-4">
-                    <h2 className="text-xl font-semibold">Compressed Image</h2>
-                    <img
-                        src={compressedImage}
-                        alt="Compressed"
-                        className="max-w-full h-auto"
-                    />
-                    <a
-                        href={compressedImage}
-                        download="compressed-image.jpg"
-                        className="mt-2 inline-block bg-green-500 text-white px-4 py-2 rounded"
-                    >
-                        Download Compressed Image
-                    </a>
-                </div>
-            )}
+
+                {/* Right Side: Compressed Image */}
+                {compressedImage && (
+                    <div className="text-center">
+                        <h2 className="text-xl font-semibold text-white mb-4">
+                            Compressed Image
+                        </h2>
+                        <div className="w-64 h-64 overflow-hidden rounded-lg shadow-md">
+                            <img
+                                src={compressedImage}
+                                alt="Compressed"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                        <a
+                            href={compressedImage}
+                            download="compressed-image.jpg"
+                            className="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
+                        >
+                            Download Compressed Image
+                        </a>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
