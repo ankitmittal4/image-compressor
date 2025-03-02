@@ -13,7 +13,31 @@ const ImageCompressor = () => {
             fileReader.readAsDataURL(file);
         }
     };
-    const handleCompressImage = () => {};
+    const handleCompressImage = () => {
+        if (!image) {
+            return;
+        }
+        const img = new Image();
+        img.src = image;
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+
+            canvas.toBlob(
+                (blob) => {
+                    const compressedImageUrl = URL.createObjectURL(blob);
+                    setCompressedImage(compressedImageUrl);
+                },
+                'image/jpeg',
+                0.7,
+            );
+        };
+    };
     return (
         <div className="p-4">
             <h1 className="text-white text-2xl font-bold mb-4">
@@ -49,13 +73,13 @@ const ImageCompressor = () => {
                         alt="Compressed"
                         className="max-w-full h-auto"
                     />
-                    {/* <a
+                    <a
                         href={compressedImage}
                         download="compressed-image.jpg"
                         className="mt-2 inline-block bg-green-500 text-white px-4 py-2 rounded"
                     >
                         Download Compressed Image
-                    </a> */}
+                    </a>
                 </div>
             )}
         </div>
